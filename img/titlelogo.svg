@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="150mm"
+   height="35.001999mm"
+   viewBox="0 0 150 35.001999"
+   version="1.1"
+   id="svg1"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs1" />
+  <g
+     id="layer1"
+     transform="translate(-37.231904,-57.346102)">
+    <path
+       style="fill:#ff2a2a;stroke-width:0.264583"
+       d="m 42.269062,57.475255 c -2.37454,0 -5.037159,2.662619 -5.037159,5.037159 0,10.35427 0,15.858361 0,24.798314 0,2.374539 2.66262,5.037156 5.037159,5.037156 15.064123,0 29.980575,0 45.076099,0 2.252768,0 4.778843,-2.526073 4.778843,-4.778841 0,-9.198517 0,-14.942007 0,-25.185788 0,-2.374539 -2.66262,-5.037156 -5.037159,-5.037156 -15.23177,0 -31.669475,0.129156 -44.817783,0.129156 z"
+       id="path2" />
+    <path
+       style="fill:#ffffff;stroke-width:0.399402"
+       d="M 58.071224,67.194387 V 82.499596 L 71.284683,74.870802 Z"
+       id="path3" />
+  </g>
+  <text
+     xml:space="preserve"
+     style="font-size:30.2923px;letter-spacing:0.393078px;opacity:0.98;fill:#000000;fill-opacity:1;stroke:#000000;stroke-width:1.92386;stroke-linecap:butt;stroke-linejoin:miter;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+     x="78.559914"
+     y="24.71368"
+     id="text3"
+     transform="scale(0.74750024,1.3377922)"><tspan
+       id="tspan3"
+       style="font-size:30.2923px;letter-spacing:0.393078px;stroke-width:1.92386;stroke-linejoin:miter;stroke-dasharray:none"
+       x="78.559914"
+       y="24.71368">TitleLG</tspan></text>
+</svg>
