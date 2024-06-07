@@ -35,31 +35,62 @@ const removeClassList = (selector, classList) => {
   });
 };
 
-const userIconButton = document.querySelector(".user-icon-button");
-const userMenu = document.querySelector(".user-menu");
+//const userIconButton = document.querySelector(".user-icon-button");
+//const userMenu = document.querySelector(".user-menu");
 const miniMenu = document.querySelector(".mini-menu");
 const menu = document.querySelector(".menu");
 const sidebar = document.querySelector(".sidebar");
 const videos = document.querySelector(".videos");
 const background = document.querySelector(".background");
 
-userIconButton.addEventListener("click", (event) => {
-  if (userMenu.style.display === "flex") return;
-  userMenu.style.display = "flex";
-  document.body.addEventListener(
-    "click",
-    () => {
-      userMenu.style.display = "none";
-    },
-    { once: true }
-  );
+const popupControll = () => {
+  const showButtonClick = (event, btn) => {
+    if (btn.classList.contains("show-popup")) {
+      btn.classList.remove("show-popup");
+      event.stopPropagation();
+      return;
+    }
 
-  event.stopPropagation();
-});
+    /*
+     * 現在開こうとしているポップアップに対して親要素ではないポップアップを閉じる
+     */
+    document.querySelectorAll(".show-popup").forEach((element) => {
+      console.dir(!element.nextElementSibling.contains(btn));
+      if (!element.nextElementSibling.contains(btn)) {
+        element.classList.remove("show-popup");
+      }
+    });
 
-userMenu.addEventListener("click", (e) => {
-  e.stopPropagation();
-});
+    btn.classList.add("show-popup");
+
+    document.body.classList.add("no_scroll");
+    document.body.addEventListener(
+      "click",
+      () => {
+        btn.classList.remove("show-popup");
+        document.body.classList.remove("no_scroll");
+      },
+      { once: true }
+    );
+
+    event.stopPropagation();
+  };
+  document.querySelectorAll(".popup-btn").forEach((btn) => {
+    btn.addEventListener("click", (event) => {
+      showButtonClick(event, btn);
+    });
+  });
+
+  document.querySelectorAll(".popup").forEach((popup) => {
+    popup.addEventListener("click", (e) => {
+      popup.querySelectorAll(".show-popup").forEach((child) => {
+        child.classList.remove("show-popup");
+      });
+      e.stopPropagation();
+    });
+  });
+};
+popupControll();
 
 const menuToggle = createToggle(
   () => {
@@ -87,20 +118,19 @@ const middleScreenWidth = 1300;
 let isSidebarForeground = false;
 const slideSidebar = () => {
   if (isSidebarForeground) {
-    console.log("isSidebarForeground === true");
-    sidebar.classList.remove("slide-in");
-    sidebar.classList.add("slide-out");
-    background.classList.remove("fade-in");
+    //menu.classList.remove("slide-in");
+    menu.classList.add("slide-out");
+    //background.classList.remove("fade-in");
     background.classList.add("fade-out");
 
-    background.addEventListener(
-      "animationend",
+    menu.addEventListener(
+      "transitionend",
       (event) => {
-        sidebar.classList.remove("foreground");
-        sidebar.classList.remove("slide-out");
-        background.classList.add("display-none");
+        console.log("transitionend");
+        menu.classList.remove("slide-in");
+        menu.classList.remove("slide-out");
+        background.classList.remove("fade-in");
         background.classList.remove("fade-out");
-        background.classList.remove("display-block");
         isSidebarForeground = false;
       },
       { once: true }
@@ -108,11 +138,11 @@ const slideSidebar = () => {
     return;
   }
 
-  sidebar.classList.add("foreground");
-  sidebar.classList.add("slide-in");
-  background.classList.remove("display-none");
+  //sidebar.classList.add("foreground");
+  menu.classList.add("slide-in");
+  //background.classList.remove("display-none");
   background.classList.add("fade-in");
-  background.classList.add("display-block");
+  //background.classList.add("display-block");
   isSidebarForeground = true;
 };
 const menuClick = () => {
