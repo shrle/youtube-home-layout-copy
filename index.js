@@ -55,13 +55,17 @@ const popupControll = () => {
      * 現在開こうとしているポップアップに対して親要素ではないポップアップを閉じる
      */
     document.querySelectorAll(".show-popup").forEach((element) => {
-      console.dir(!element.nextElementSibling.contains(btn));
       if (!element.nextElementSibling.contains(btn)) {
         element.classList.remove("show-popup");
       }
     });
 
     btn.classList.add("show-popup");
+    const rect = btn.getBoundingClientRect();
+    const windowWidth = document.querySelector("html").clientWidth;
+    const popup = btn.nextElementSibling;
+    popup.style.top = `${rect.bottom}px`;
+    popup.style.right = `${windowWidth - rect.right}px`;
 
     document.body.classList.add("no_scroll");
     document.body.addEventListener(
@@ -94,22 +98,11 @@ popupControll();
 
 const menuToggle = createToggle(
   () => {
-    console.log("menu on");
-    //miniMenu.classList.add("mini-menu-switched");
-    //miniMenu.classList.remove("mini-menu");
-
     sidebar.classList.add("mini");
-    menu.classList.add("display-none");
     videos.classList.add("margin-left-0");
   },
   () => {
-    console.log("menu off");
-    //miniMenu.classList.remove("mini-menu-switched");
-    //removeClassList(".mini-menu-switched ul li a", ["display-flex"]);
-    //miniMenu.classList.add("mini-menu");
-
     sidebar.classList.remove("mini");
-    menu.classList.remove("display-none");
     videos.classList.remove("margin-left-0");
   }
 );
@@ -158,6 +151,14 @@ document.querySelectorAll(".menu-button").forEach((element) => {
 });
 
 background.addEventListener("click", slideSidebar);
+
+window.addEventListener("resize", () => {
+  if (middleScreenWidth < window.innerWidth) {
+    isSidebarForeground = false;
+    menu.classList.remove("slide-in");
+    background.classList.remove("fade-in");
+  }
+});
 
 document.querySelector(".show-search-button").addEventListener("click", () => {
   document.querySelector("header").classList.add("wide-search");

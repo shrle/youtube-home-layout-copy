@@ -234,8 +234,6 @@ header button:active {
 
   position: fixed;
   z-index: 1;
-  top: 80px;
-  right: 20px;
 
   flex-direction: column;
 }
@@ -376,9 +374,6 @@ header button:active {
 
   position: fixed;
   overflow-x: visible;
-
-  top: 80px;
-  right: 50px;
 }
 .notifications-list > .top {
   width: 100%;
@@ -500,7 +495,7 @@ header button:active {
 .notifications-setting {
   z-index: 6;
   position: fixed;
-  margin-top: 40px;
+  width: max-content;
 
   display: flex;
   align-items: start;
@@ -608,11 +603,13 @@ main {
   scrollbar-width: thin;
 }
 
-.menu.slide-in {
+.menu.slide-in,
+.sidebar.mini .menu.slide-in {
   visibility: visible;
   transform: translateX(var(--menu-width));
 }
-.menu.slide-out {
+.menu.slide-out,
+.sidebar.mini .menu.slide-out {
   transform: translateX(0px);
 }
 
@@ -654,38 +651,6 @@ main {
   transform: translateX(0px);
 }
 
-/*
-.sidebar.foreground .menu {
-  margin: 0;
-  display: flex;
-  position: static;
-}
-
-.sidebar.foreground .top {
-  width: var(--menu-width);
-  height: var(--header-height);
-  margin: 0;
-  padding: 0;
-  display: flex;
-  flex-direction: row;
-
-  flex-direction: row;
-  align-items: center;
-  justify-content: left;
-}
-
-.sidebar.foreground .mini-menu {
-  display: none;
-}
-
-.sidebar.foreground {
-  display: block;
-  position: fixed;
-  z-index: 3;
-  top: 0;
-  left: 0;
-}
-*/
 .menu ul {
   width: 220px;
   margin: 0 0 20px 0;
@@ -721,12 +686,6 @@ main {
   text-align: center;
 }
 
-/*
-.sidebar.mini {
-  width: var(--mini-menu-width);
-}
-*/
-
 .sidebar.mini + .videos {
   margin-left: var(--mini-menu-width);
 }
@@ -747,6 +706,10 @@ main {
   height: 100%;
   margin: 0;
   position: fixed;
+}
+
+.sidebar.mini .menu {
+  visibility: hidden;
 }
 
 .mini-menu ul {
@@ -810,31 +773,6 @@ main {
   padding-right: 10px;
   padding-left: 30px;
   margin-left: 230px;
-}
-@media screen and (max-width: 1300px) {
-  .menu {
-    visibility: hidden;
-    left: calc(0px - var(--menu-width));
-  }
-  .mini-menu {
-    display: flex;
-  }
-
-  .videos {
-    margin-left: var(--mini-menu-width);
-  }
-}
-@media screen and (max-width: 800px) {
-  .mini-menu {
-    display: none;
-  }
-  .mini-menu-switched {
-    display: none;
-  }
-
-  .videos {
-    margin-left: 0;
-  }
 }
 
 .recommendation {
@@ -967,4 +905,34 @@ main {
 
 .no_scroll {
   overflow: hidden;
+}
+
+@media screen and (min-width: 1301px) {
+  .menu {
+    transition: none;
+  }
+}
+@media screen and (max-width: 1300px) {
+  .menu {
+    visibility: hidden;
+    left: calc(0px - var(--menu-width));
+  }
+  .mini-menu {
+    display: flex;
+  }
+
+  .videos {
+    margin-left: var(--mini-menu-width);
+  }
+}
+@media screen and (max-width: 800px) {
+  .mini-menu,
+  .sidebar.mini .mini-menu {
+    display: none;
+  }
+
+  .videos,
+  .sidebar.mini + .videos {
+    margin-left: 0;
+  }
 }
